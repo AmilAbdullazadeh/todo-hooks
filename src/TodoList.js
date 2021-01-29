@@ -6,14 +6,19 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Todo from "./Todo";
 
-export default function TodoList(props) {
+export default function TodoList({ removeTodo, todos }) {
+
     return (
         <Paper>
             <List>
                 {
-                    props.todos.map((todo) => (
+                    todos.map((todo) => (
                         <>
-                            <Todo task={todo.task} key={todo.id} completed={todo.completed} />
+                            <Todo
+                                removedTodo={removeTodo}
+                                task={todo.task}
+                                id={todo.id}
+                                completed={todo.completed} />
                             <Divider/>
                         </>
                     ))

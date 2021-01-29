@@ -23,6 +23,11 @@ export default function TodoApp() {
         )
     }
 
+    const removeTodo = todoID => {
+        const updateTodoList = todos.filter( todo => todo.id !== todoID )
+        setTodos(updateTodoList)
+    }
+
     return (
         <Paper
             style={{
@@ -41,7 +46,7 @@ export default function TodoApp() {
             <Grid container justify="center" style={{ marginTop: "1rem" }} >
                 <Grid item xs={11} md={8} lg={4} >
                     <TodoForm addTodo={addTodo} />
-                    <TodoList todos={todos}/>
+                    <TodoList removeTodo={removeTodo} todos={todos}/>
                 </Grid>
             </Grid>
         </Paper>
@@ -49,7 +54,7 @@ export default function TodoApp() {
 }
 
 
-// - TodosApp
+// - TodoApp
 //     - TodoForm
 //     - TodoList
 //         - Todo
