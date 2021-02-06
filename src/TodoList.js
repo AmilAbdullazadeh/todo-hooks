@@ -6,20 +6,24 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Todo from "./Todo";
 
-export default function TodoList({ removeTodo, todos }) {
-
+export default function TodoList({todos, removeTodo, toggleTodo, editTodo}) {
     return (
         <Paper>
             <List>
                 {
-                    todos.map((todo) => (
+                    todos.map((todo, idx) => (
                         <>
                             <Todo
-                                removedTodo={removeTodo}
-                                task={todo.task}
-                                id={todo.id}
-                                completed={todo.completed} />
-                            <Divider/>
+                                editTodo={editTodo}
+                                toggleTodo={toggleTodo}
+                                removeTodo={removeTodo}
+                                {...todo}
+                                // task={todo.task}
+                                // key={todo.id}
+                                // completed={todo.completed}
+                                // id={todo.id}
+                            />
+                            {idx < todos.length - 1 && <Divider/>}
                         </>
                     ))
                 }
