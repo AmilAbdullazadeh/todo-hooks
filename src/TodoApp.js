@@ -8,31 +8,17 @@ import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import useTodoState from "./hooks/useTodoState";
 import uuid from 'uuid/v4';
+import useLocalStorageState from "./hooks/useLocalStorageState";
 
 export default function TodoApp() {
     const initialTodos = [
         {id: 1, task: 'Read a book', completed: true},
     ]
-    const [todos, setTodos] = useState(initialTodos)
 
-    const addTodo = newTask => {
-        setTodos([...todos, {id: uuid(), task: newTask, completed: false}])
-    }
+    const {todos, addTodo, removeTodo, toggleTodo, editTodo} = useTodoState(initialTodos)
 
-    const removeTodo = (todoID) => {
-        const updateTodo = todos.filter(todo => todo.id !== todoID)
-        setTodos(updateTodo)
-    }
+    // const [mood, setMood] = useLocalStorageState('mood', 'angry')
 
-    const toggleTodo = (todoID) => {
-        const updateTodo = todos.map((todo) => todo.id === todoID ? {...todo, completed: !todo.completed} : todo)
-        setTodos(updateTodo)
-    }
-
-    const editTodo = (todoID, newTask) => {
-        const updateTodo = todos.map(todo => todo.id === todoID ? {...todo, task: newTask} : todo)
-        setTodos(updateTodo)
-    }
 
     return (
         <Paper

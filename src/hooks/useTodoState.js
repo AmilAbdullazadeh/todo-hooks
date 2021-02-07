@@ -8,6 +8,7 @@ export default initialTodos => {
 
     return {
         todos,
+
         addTodo: newTodo => {
             setTodos(
                 [...todos, {id: uuid(), task: newTodo, completed: false}]
